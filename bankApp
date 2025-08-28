@@ -1,0 +1,67 @@
+public class Main {
+    public static void main(String[] args) {
+
+        //Bank app sample
+
+        Scanner scanner = new Scanner(System.in);
+        String correctPassword = "oka";
+        int attempts = 3;
+
+        System.out.println("Enter the password: ");
+
+
+        while (attempts > 0) {
+            String enterPassword = scanner.nextLine();
+
+            if (enterPassword.equals(correctPassword)) {
+
+                //when password has been accepted
+
+                System.out.println("Password Accepted. \nWelcome to Tavrince Bank of Africa ");
+                double balance = 1000000.00;
+                try {
+                    System.out.println("Enter amount to withdraw:");
+                    double amount = scanner.nextDouble();
+
+                    if (amount > balance) {
+                        System.out.println("Insufficient balance");
+
+                    } else if (amount <= 0) {
+                        System.out.println("Invalid withdrawal amount");
+                    } else {
+                        balance -= amount;
+                        System.out.println("Withdrawal succesful! ");
+                        System.out.println("Remaining balance: " + balance);
+                    }
+
+                }catch (java.util.InputMismatchException e){
+                    System.out.println("Error please enter a valid number");
+
+                }catch (Exception e){
+                    System.out.println("Transaction error");
+
+                }finally{
+                    System.out.println("Thanks for using TBA ");
+                }
+
+                return;
+            } else {
+                attempts--;
+                if (attempts > 0) {
+                    System.out.println("Incorrect password. Remaining attempts: " + attempts);
+                } else {
+                    System.out.println("Incorrect password. Access denied");
+
+                }
+
+
+            }
+
+
+        }
+        scanner.close();
+
+    }
+
+
+}
